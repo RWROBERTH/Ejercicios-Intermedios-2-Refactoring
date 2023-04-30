@@ -1,0 +1,55 @@
+SubProceso juego = pro(cantidad)
+	num = Aleatorio(0,9)
+	izq = Aleatorio(1,9)
+	der = Aleatorio(0,9)
+	asiertos = 0
+	Dimension intentos[cantidad,3]
+	Para i=1 Hasta cantidad Con Paso 1 Hacer
+		Borrar Pantalla
+		Escribir "Presione una tecla para comenzar jugador ",i
+		Esperar Tecla
+		Para k=1 Hasta 3 Con Paso 1 Hacer
+			Escribir "Intento número ", k
+			leer intentos[i,k]
+		Fin Para
+	Fin Para
+	Para i=1 Hasta cantidad Con Paso 1 Hacer
+		Para k=1 Hasta 3 Con Paso 1 Hacer
+			si intentos[i,k] = num Entonces
+				asiertos = asiertos +1
+			FinSi
+		Fin Para
+	Fin Para
+	Borrar Pantalla
+	Segun asiertos Hacer
+		0:
+			Escribir "Nadie adivino"
+		1:
+			Para i=1 Hasta cantidad Con Paso 1 Hacer
+				Para k=1 Hasta 3 Con Paso 1 Hacer
+					si intentos[i,k] = num Entonces
+						Escribir "Gana jugador numero ", i
+					FinSi
+				Fin Para
+			Fin Para
+		De Otro Modo:
+			Escribir "No hubo un ganador en solitario"
+	FinSegun
+	Para i=1 Hasta cantidad Con Paso 1 Hacer
+		Escribir "Respuestas del jugador numero ", i
+		Para k=1 Hasta 3 Con Paso 1 Hacer
+			Escribir Sin Saltar intentos[i,k], "   "
+		Fin Para
+		Escribir ""
+	Fin Para
+	Escribir "El número es ",izq,num,der
+	Escribir "La respuesta es ", num
+FinSubProceso
+
+Algoritmo adivina_el_numero_del_medio
+	Escribir "Adivina el número del medio"
+	Escribir "Los jugadores tienen 3 íntentos"
+	Escribir "Número de jugadores"
+	leer cantidad
+	Escribir pro(cantidad)
+FinAlgoritmo
