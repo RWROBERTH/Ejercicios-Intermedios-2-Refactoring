@@ -1,0 +1,104 @@
+SubProceso  vizualizar(puntos, equipos, cantidad)
+	para i=1 hasta cantidad Con Paso 1 Hacer
+		Escribir Sin Saltar "Equipo", i, "   ", puntos[i]
+		Escribir ""
+	FinPara
+FinsubProceso
+Algoritmo refatorizar_campeonatos
+	Repetir
+		Borrar Pantalla
+		Escribir "Escribe la cantidad de equipos"
+		Escribir "Debe ser multiplo de 4 y mayor a 4"
+		leer cantidad
+	Hasta Que cantidad mod 4 = 0 y cantidad > 4
+	Dimension puntos[cantidad]
+	Dimension semis[4]
+	Dimension final[2]
+	
+	para i=1 Hasta cantidad Con Paso 1 Hacer
+		para k=1 Hasta cantidad Con Paso 1 Hacer
+			si i <> k Entonces
+				Escribir "equipos",i, " vs ", "equipos",k
+				resultado = Aleatorio(1,3)
+				si resultado= 1 Entonces
+					Escribir "   Gana equipo",i
+					puntos[i]=puntos[i]+3
+				SiNo
+					si resultado= 2 Entonces
+						Escribir "   Gana equipo",k
+						puntos[k]=puntos[k]+3
+					SiNo
+						si resultado= 3 Entonces
+							Escribir "      Empate "
+							puntos[i]=puntos[i]+1
+							puntos[k]=puntos[k]+1
+						FinSi
+					FinSi
+				FinSi
+			FinSi
+		FinPara
+	FinPara
+	Escribir ""
+	Escribir "         puntos"
+	vizualizar(puntos, equipos, cantidad)
+	para i = 1 hasta cantidad Con Paso 1 Hacer
+		si puntos[i] > semis[1] Entonces
+			semis[1] = puntos[i]
+			a=i
+		FinSi
+	FinPara
+	Escribir ""
+	Escribir "Equipos que pasan a la semifinal"
+	Escribir "Primer  Puesto Equipo",a," con " semis[1]," pts."
+	Para i=1 Hasta cantidad Con Paso 1 Hacer
+		si i <> a y puntos[i] > semis[2] Entonces
+			semis[2] = puntos[i]
+			b=i
+		FinSi
+	Fin Para
+	Escribir "Segundo Puesto Equipo",b," con " semis[2]," pts."
+	Para i=1 Hasta cantidad Con Paso 1 Hacer
+		si i <> a  y i <> b y puntos[i] > semis[3] Entonces
+			semis[3] = puntos[i]
+			c=i
+		FinSi
+	Fin Para
+	Escribir "Tercer  Puesto Equipo",c," con " semis[3]," pts."
+	Para i=1 Hasta cantidad Con Paso 1 Hacer
+		si i <> a  y i <> b y i <> c y puntos[i] > semis[4] Entonces
+			semis[4] = puntos[i]
+			d=i
+		FinSi
+	Fin Para
+	Escribir "Cuarto  Puesto Equipo",d," con " semis[4]," pts."
+	Escribir ""
+	Escribir "      Semifinal"
+	semifinal1 = Aleatorio(1,2)
+	Escribir "Equipo",a,"  vs  Equipo",d
+	si semifinal1 = 2 Entonces
+		Escribir "    Gana Equipo",a
+		final[1] = a
+	SiNo
+		Escribir "    Gana Equipo",d
+		final[1] = d
+	FinSi
+	semifinal2 = Aleatorio(1,2)
+	Escribir "Equipo",b,"  vs  Equipo",c
+	si semifinal2 = 2 Entonces
+		Escribir "    Gana Equipo",b
+		final[2] = b
+	SiNo
+		Escribir "    Gana Equipo",c
+		final[2] = c
+	FinSi
+	Escribir ""
+	Escribir "        Final"
+	finish = Aleatorio(1,2)
+	Escribir "Equipo",final[1],"  vs  Equipo",final[2]
+	si finish = 2 Entonces
+		Escribir "    Gana Equipo",final[2]
+	SiNo
+		Escribir "    Gana Equipo",final[1]
+	FinSi
+	
+FinAlgoritmo
