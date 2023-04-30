@@ -1,0 +1,85 @@
+SubProceso todo = notas(num)
+	apro_continua = 0
+	reprocontinua = 0
+	apro_materia = 0
+	repromateria = 0
+	out = 0
+	Dimension continua[num]
+	Dimension final[num]
+	Dimension faltas[num]
+	Dimension apro[num]
+	Escribir "Alumnos con 7 o mas faltas: "
+	Escribir "(Reprueban Evaluación continua)"
+	Para i=1 Hasta num Con Paso 1 Hacer
+		faltas[i] = Aleatorio(1,10)
+		continua[i] = Aleatorio(10,100)
+		si faltas[i] >= 7 Entonces
+			Escribir "Alumno Nro ",i," con ", faltas[i], " faltas"
+			out = out +1
+		FinSi
+		si continua[i] > 59 y faltas[i] < 7 Entonces
+			apro_continua = apro_continua +1
+			final[i] = Aleatorio(10,100)
+		SiNo
+			reprocontinua = reprocontinua +1
+		FinSi
+	Fin Para
+	out = out/ num
+	Escribir "Porcentaje de Alumnos con 7 o más faltas: ",out," %"
+	Escribir ""
+	Escribir "Notas de evaluación Continua"
+	Para i=1 Hasta num Con Paso 1 Hacer
+		Escribir "Alumno Nro ", i, "   Evaluacion continua: ", continua[i], " pts."
+	Fin Para
+	Escribir "Nro de Alumnos que aprobaron continua:   ", apro_continua
+	Escribir "Nro de Alumnos que reprobaron continua:  ",reprocontinua
+	Escribir ""
+	Escribir "Aprobados para dar la evaluacion final"
+	Para i=1 Hasta num Con Paso 1 Hacer
+		si continua[i] > 59 y faltas[i] < 7 Entonces
+			Escribir "Alumno Nro ", i, "   Evaluacion final: ", final[i]," pts."
+		FinSi
+	Fin Para
+	Escribir ""
+	Escribir "Aprobaron la materia"
+	Para i=1 Hasta num Con Paso 1 Hacer
+		apro[i]= (continua[i] + final[i])/2 
+		si apro[i] >= 51 Entonces
+			apro_materia = apro_materia +1
+			Escribir "Alumno Nro ", i, "  Aprobaron con : ", apro[i]," pts."
+		SiNo
+			repromateria = repromateria +1
+		FinSi
+	Fin Para
+	Escribir "Nro de Alumnos que aprobaron la materia:   ", apro_materia
+	Escribir "Nro de Alumnos que reprobaron la materia:  ",repromateria
+	Escribir ""
+	Escribir "Alumnos con Nota final mayor a 90 puntos: "
+	Para i=1 Hasta num Con Paso 1 Hacer
+		si apro[i] > 90 Entonces
+			Escribir "Alumno Nro ",i," con: ",apro[i]," pts."
+		FinSi
+	Fin Para
+	Escribir ""
+	Escribir "Alumnos con Nota final entre 60 a 90:"
+	Para i=1 Hasta num Con Paso 1 Hacer
+		si apro[i] < 91 y apro[i] > 59 Entonces
+			Escribir "Alumno Nro ",i," con: ",apro[i]," pts."
+		FinSi
+	Fin Para
+	Escribir ""
+	Escribir "Alumnos con Nota final menor a 60:"
+	Para i=1 Hasta num Con Paso 1 Hacer
+		si apro[i] < 60 y apro[i] > 1 Entonces
+			Escribir "Alumno Nro ",i," con: ",apro[i]," pts."
+		FinSi
+	Fin Para
+	Escribir ""
+FinSubProceso
+
+Algoritmo Intermediosdos_uno
+	Escribir "Con cuanto estudiantes será el arreglo"
+	leer num
+	Escribir ""
+	Escribir notas(num)
+FinAlgoritmo
